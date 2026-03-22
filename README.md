@@ -98,4 +98,9 @@
 
 <img width="919" height="400" alt="image" src="https://github.com/user-attachments/assets/79b544f8-f85a-4e65-b48a-cb3f3af5919b" />
 
+## 📊 Statistiques
+
+### Visualisation taux d’utilisation et état du matériel
+
+<img width="1760" height="820" alt="Capture d&#39;écran 2026-03-22 224310" src="https://github.com/user-attachments/assets/4595cca1-84dc-4047-a518-c5da6011b81d" />
 
