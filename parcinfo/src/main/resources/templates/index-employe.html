@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employés - Parc Informatique</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="p-4">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Parc Informatique</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" th:href="@{/materiels}">Matériel</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/employes}">Employés</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/affectations}">Affectations</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/stats}">Statistiques</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<h2>Employés</h2>
+<a th:href="@{/employe/add}" class="btn btn-primary mb-3">Ajouter un employé</a>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Service</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="e : ${employes}">
+        <td th:text="${e.id}"></td>
+        <td th:text="${e.nom}"></td>
+        <td th:text="${e.service}"></td>
+        <td th:text="${e.email}"></td>
+        <td>
+            <a th:href="@{/employe/edit/{id}(id=${e.id})}" class="btn btn-sm btn-warning">Modifier</a>
+            <a th:href="@{/employe/delete/{id}(id=${e.id})}" class="btn btn-sm btn-danger" onclick="return confirm('Supprimer ?')">Supprimer</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<footer class="bg-dark text-white text-center py-3 mt-4">
+    &copy; 2026 Parc Informatique
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

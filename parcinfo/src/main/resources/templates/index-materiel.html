@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste Matériel - Parc Informatique</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="p-4">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Parc Informatique</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" th:href="@{/materiels}">Matériel</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/employes}">Employés</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/affectations}">Affectations</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/stats}">Statistiques</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<h2>Liste du Matériel</h2>
+
+<!-- Filtrage -->
+<form class="row g-3 mb-3" method="get" th:action="@{/materiels}">
+    <div class="col-auto">
+        <input type="text" name="type" th:value="${param.type}" placeholder="Type (PC, imprimante…)" class="form-control">
+    </div>
+    <div class="col-auto">
+        <input type="text" name="etat" th:value="${param.etat}" placeholder="État (OK, en panne)" class="form-control">
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Filtrer</button>
+        <a th:href="@{/materiels}" class="btn btn-secondary">Réinitialiser</a>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Réf</th>
+        <th>Type</th>
+        <th>Marque</th>
+        <th>État</th>
+        <th>Date Achat</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="m : ${materiels}">
+        <td th:text="${m.ref}"></td>
+        <td th:text="${m.type}"></td>
+        <td th:text="${m.marque}"></td>
+        <td th:text="${m.etat}"></td>
+        <td th:text="${m.dateAchat}"></td>
+        <td>
+            <a th:href="@{/materiel/edit/{id}(id=${m.id})}" class="btn btn-sm btn-warning">Modifier</a>
+            <a th:href="@{/materiel/delete/{id}(id=${m.id})}" class="btn btn-sm btn-danger"
+               onclick="return confirm('Supprimer ce matériel ?')">Supprimer</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/materiel/add}" class="btn btn-success">Ajouter Matériel</a>
+
+<footer class="bg-dark text-white text-center py-3 mt-4">
+    &copy; 2026 Parc Informatique
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
